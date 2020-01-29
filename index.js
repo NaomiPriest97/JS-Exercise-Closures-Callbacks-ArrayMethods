@@ -162,8 +162,8 @@ function processContains(items, list, callback) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
-  /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+function processDuplicateFree(list, callback) {
+ 
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -206,12 +206,11 @@ function getFullNames(runners) {
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
 function firstNamesAllCaps(runners) {
-  let arrayNew = [];
-  for (let i=0; i < runners.length; i++){
-    if (typeof runners[i] === 'string')
-    runners[i] = runners[i].toCapitalize();
-  }
-  return arrayNew;
+  let capArray = [];
+ runners.map(function(index){
+   capArray.push(index.first_name.toUpperCase());
+ })
+  return capArray;
 }
 
 /**
@@ -227,12 +226,11 @@ function firstNamesAllCaps(runners) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(runners, tShirtSize) {
-  const size = runners.filter(function, sizeItem){
-    return sizeItem.shirt_size === "S";
-  });
-  console.log(size);
-}
+ function getRunnersByTShirtSize(runners, tShirtSize) {
+     return runners.filter(function(index){
+      return index.shirt_size === tShirtSize; 
+    }) 
+  }
 
 /**
  * ### Challenge `tallyUpDonations`
@@ -268,13 +266,12 @@ function tallyUpDonations(runners) {
  * etc
 */
 function counterMaker() {
-  // BROKEN CODE STARTS
-  const count = 0;
-  function counter() {
-    ++count
-  }
-  // BROKEN CODE ENDS
-}
+  let count = 0;
+  return () => {
+    return count++;
+  };
+};
+
 
 /**
  * ### Challenge `counterMakerWithLimit`
@@ -296,10 +293,16 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
-}
-
+function counterMakerWithLimit(limit) {
+  let count = -1;
+  return function counter(){
+    if (count === limit){
+      count = -1
+    }
+    return ++ count
+  }
+  }
+  
 /////////////// END OF CHALLENGE ///////////////
 /////////////// END OF CHALLENGE ///////////////
 /////////////// END OF CHALLENGE ///////////////
