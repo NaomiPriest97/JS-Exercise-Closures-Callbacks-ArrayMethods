@@ -138,8 +138,8 @@ function processProduct(num1, num2, callback){
  * should return "sad".
 */
 
-function processContains(items, list, callback) {
-  const filterItem = list.includes(items);
+function processContains(item, list, callback) {
+  const filterItem = list.includes(item);
   return callback(filterItem);
 }
 
@@ -163,7 +163,9 @@ function processContains(items, list, callback) {
  * should return 3.
 */
 function processDuplicateFree(list, callback) {
- 
+ const setFromArray = new Set(list);
+ const arrayFromSet = Array.from(setFromArray);
+ return callback(arrayFromSet) 
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
